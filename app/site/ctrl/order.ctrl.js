@@ -24,6 +24,7 @@ OrderCtrl.prototype.deleteCartItem = function(cartProduct){
     }
 }
 
+//calculates subtotal on shopping cart//
 OrderCtrl.prototype.total=function(){
     var total = 0
     var ctrl = this;
@@ -45,7 +46,8 @@ OrderCtrl.prototype.goToCart = function(){
 
 OrderCtrl.prototype.reviewOrder = function(){
     var ctrl = this; 
-    ctrl.cartSrv.cart.push(cartProduct);
+    
+    // ctrl.cartSrv.cart.push(cartProduct);
 
     var customer = {
         firstName: ctrl.firstName,

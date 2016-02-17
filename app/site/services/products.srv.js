@@ -30,6 +30,7 @@ ProductService.prototype.addProduct = function(product){
 		console.log(res);
 		if(res.status === 200){
 			//product was added successfully
+			console.log(res);
 			_this.products.push(res.data.product);
 			_this.state.go('admin.inventory');
 
@@ -55,7 +56,7 @@ ProductService.prototype.deleteProduct = function(productId){
 	var _this = this;
 	this.api.request('/products/'+productId,{},'DEL')
 	.then(function(res){
-		console.log(res);
+		// console.log(res);
 		if(res.status === 200){
 			//product was deleted successfully
 			_this.removeProduct(productId);

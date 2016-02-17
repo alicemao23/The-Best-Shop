@@ -15,8 +15,6 @@ function ProductCtrl(productSrv,$state,$stateParams,api,products){
 		{label:'Dress',value:'dress'},
 		{label:'Outerwear',value:'outerwear'},
 	];
-
-	ctrl.product = {};
 	ctrl.product_update_btn = 'Update Product';
 	ctrl.product_delete_btn = 'Remove Product';
 	
@@ -34,7 +32,7 @@ function ProductCtrl(productSrv,$state,$stateParams,api,products){
 	};
 }
 
-ProductCtrl.prototype.addProduct = function (){
+ProductCtrl.prototype.addProduct = function (product){
 	var ctrl = this;
 	var product = {
 		name: ctrl.name,
@@ -50,10 +48,10 @@ ProductCtrl.prototype.addProduct = function (){
 }
 
 
-ProductCtrl.prototype.deleteProduct = function(productId){
+ProductCtrl.prototype.deleteProduct = function(){
 	var ctrl = this; 
-	console.log('hello');
-	ctrl.productSrv.deleteProduct(ctrl.product.id);
+	ctrl.productSrv.removeProduct(ctrl.product.id);
+	
 }
 
 ProductCtrl.prototype.updateProduct = function(){
