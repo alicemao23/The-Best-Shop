@@ -12,6 +12,7 @@
             <td>{{cartProduct.name}}</td>
             <td>{{cartProduct.description}}</td>
             <td><input type="number" ng-model="cartProduct.quantity" value="{{cartProduct.quantity}}"></td>
+            <td>{{cartProduct.size}}</td>
             <td>{{cartProduct.quantity* cartProduct.price| currency:undefined:0}}</td>
             <td><button ng-click="ctrl.deleteCartItem(cartProduct)">delete</button></td>
         <tr>

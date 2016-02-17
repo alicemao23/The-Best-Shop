@@ -39,6 +39,7 @@ ProductCtrl.prototype.addProduct = function (){
 		image: ctrl.image,
 		description: ctrl.description,
 		category: ctrl.category,
+		size: ctrl.size,
 		quantity: ctrl.quantity,
 		price: ctrl.price,
 		status:'active'

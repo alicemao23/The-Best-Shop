@@ -20,6 +20,11 @@
 	<h4>{{ctrl.product.price | currency}}</h4><br>
 	<p>{{ctrl.product.description}}</p><br>
 
-		<button class="addToCart" ng-click="ctrl.addToCart(ctrl.product); toggle=!toggle"><span ng-show="toggle">product added!</span><span ng-hide="toggle">add to cart</span></button>
+	<!-- <select ng-option="" ng-model="selected"></select> -->
+	<button type="submit" ng-click="ctrl.selectSize('xs')">XS</button>
+	<button type="submit" ng-click="ctrl.selectSize('s')">S</button>
+	<button type="submit" ng-click="ctrl.selectSize('m')">M</button>
+	<button type="submit" ng-click="ctrl.selectSize('l')">L</button>
+	<button class="addToCart" ng-click="ctrl.addToCart(ctrl.product); toggle=!toggle"><span ng-show="toggle">product added!</span><span ng-hide="toggle">add to cart</span></button>
 	</div> 
 </div>
