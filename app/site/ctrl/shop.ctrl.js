@@ -25,8 +25,26 @@ ShopCtrl.prototype.toProduct = function(product,productId){
 	var ctrl = this;
 
 	ctrl.$state.go('shop.item',{productId:productId});
+
 }
 
+//function adds selected item to cart//
+ShopCtrl.prototype.addToCart = function(product){
+	var ctrl = this;
+	var obj = {
+		cartProduct: {
+			name: product.name,
+			image: product.image,
+			price: product.price,
+		},
+		quantity: 1,
+	};
+	ctrl.cartSrv.cart.push(obj);
+	console.log(ctrl.cartSrv.cart);
+}
+
+//function deletes selected item from cart//
+ShopCtrl.prototype.deleteCartItem = function(){}
 ShopCtrl.prototype.goToID = function(){
 	var ctrl = this;
 	ctrl.products = (ctrl.productSrv).ctrl.getProduct(ctrl.$stateParams.productsId);

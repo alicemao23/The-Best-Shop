@@ -47,7 +47,12 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
     .state ('shop.cart', {
       url:'cart',
       templateUrl: 'site/partials/shop-cart.html',
-      controller: 'OrderCtrl as ctrl'
+      controller: 'OrderCtrl as ctrl',
+       resolve:{
+        orders: function(orderSrv){
+          return orderSrv.getOrders();
+        }
+      }
     })
 
     .state ('auth', {
@@ -107,28 +112,56 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
     .state ('admin.orders', {
       url:'/orders',
        templateUrl: 'site/partials/admin-orders.html',
-       controller: 'OrderCtrl as ctrl'
-      //controller: 'ProductCtrl as ctrl'
+       controller: 'OrderCtrl as ctrl',
+       resolve:{
+        orders: function(orderSrv){
+          return orderSrv.getOrders();
+        }
+      }
     })
     .state ('orders.updateOrder', {
       url:'/updateOrder',
       templateUrl: 'site/partials/admin-ordersUpdate.html',
-      controller: 'OrderCtrl as ctrl'
+      controller: 'OrderCtrl as ctrl',
+       resolve:{
+        orders: function(orderSrv){
+          return orderSrv.getOrders();
+        }
+      }
     })
     .state ('product.search', {
       url:'/search',
       templateUrl: 'site/partials/shop-search.html',
       controller: 'ProductCtrl as ctrl'
     })
-    .state('checkout', {
+    .state('shop.checkout', {
       url:'/checkout',
       templateUrl: 'site/partials/shop-checkout.html',
-      controller: 'OrderCtrl as ctrl'
+      controller: 'OrderCtrl as ctrl',
+       resolve:{
+        orders: function(orderSrv){
+          return orderSrv.getOrders();
+        }
+      }
     })
-    .state('submitOrder', {
+    .state('shop.submitOrder', {
       url:'/submitOrder',
       templateUrl:'site/partials/shop-submit.html',
-      controller: 'OrderCtrl as ctrl'
+      controller: 'OrderCtrl as ctrl',
+       resolve:{
+        orders: function(orderSrv){
+          return orderSrv.getOrders();
+        }
+      }
+    })
+    .state('shop.lastpage',{
+      url:'/confirmation',
+      templateUrl:'site/partials/lastpage.html',
+      resolve:{
+        products: function(productSrv){
+          return productSrv.getProducts();
+        }
+      }
     })
 
 

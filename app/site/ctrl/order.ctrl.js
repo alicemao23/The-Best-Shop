@@ -4,7 +4,7 @@
 app.controller('OrderCtrl', OrderCtrl);
 
 
-function OrderCtrl(api, productSrv, cartSrv, orderSrv, $state, $scope){
+function OrderCtrl(api, productSrv, cartSrv, orderSrv, $state, $scope, orders){
 
 	var ctrl = this;
 	ctrl.api = api;
@@ -12,14 +12,24 @@ function OrderCtrl(api, productSrv, cartSrv, orderSrv, $state, $scope){
     ctrl.$scope = $scope;
 	ctrl.productSrv = productSrv;
     ctrl.cartSrv = cartSrv;
+    ctrl.orders = orders;
+    console.log(orders);
 
     ctrl.orderSrv = orderSrv;
     ctrl.customer = ctrl.orderSrv.currentCustomer;
     ctrl.cart = cartSrv.cart;
     ctrl.order = ctrl.orderSrv.currentOrder;
 
-
+    ctrl.finalCustomer = ctrl.orderSrv.currentCustomer;
     ctrl.customer = {};
+
+    $scope.$watch(function() {
+        return cartSrv.cart;
+    }, function(newVal) {
+        if (newVal.length > 0) {
+            ctrl.is_products = true;
+        }
+    })
 
 }
 
@@ -33,7 +43,6 @@ OrderCtrl.prototype.deleteCartItem = function(cartProduct){
     }
 }
 
-//calculates subtotal on shopping cart//
 OrderCtrl.prototype.total=function(){
     var total = 0
     var ctrl = this;
@@ -45,7 +54,7 @@ OrderCtrl.prototype.total=function(){
 
 OrderCtrl.prototype.checkout = function(){
     var ctrl = this; 
-    ctrl.$state.go('checkout');
+    ctrl.$state.go('shop.checkout');
 }
 
 OrderCtrl.prototype.goToCart = function(){
@@ -53,7 +62,7 @@ OrderCtrl.prototype.goToCart = function(){
     ctrl.$state.go('shop.cart');
 }
 
-OrderCtrl.prototype.reviewOrder = function(cartProduct){
+OrderCtrl.prototype.reviewOrder = function(){
     var ctrl = this; 
 
     var customer = {
@@ -66,23 +75,34 @@ OrderCtrl.prototype.reviewOrder = function(cartProduct){
         province: ctrl.province,
         postal: ctrl.postal
     }
+
     console.log(customer);
     ctrl.orderSrv.currentCustomer = customer;
-    ctrl.$state.go('submitOrder');
+    ctrl.$state.go('shop.submitOrder');
 }
 
 OrderCtrl.prototype.submitOrder = function(){
     var ctrl = this;
-    var order = {
-        customer: ctrl.customer,
-        cart: ctrl.cart
-    };
-    
-    ctrl.orderSrv.currentOrder = order;
-    ctrl.orderSrv.addOrder(ctrl.orderSrv.currentOrder);
-    alert("Congratulations, your order is on it's way!");
-    ctrl.$state.go('shop.main');
-    // where do we want the page to go once order confirmed and submitted?
+    ctrl.order = {
+       // customer: ctrl.customer,
+       cart: JSON.stringify(ctrl.cartSrv.cart),
+       total: '',
+       tax:'',
+       final_total:'',
+   };
+    ctrl.orderSrv.addOrder(ctrl.order);
+    console.log
+    ctrl.$state.go('shop.lastpage');
+}
 
+OrderCtrl.prototype.getOrders = function(){
+    var ctrl = this;
+    var order = {
+        firstName: ctrl.firstName,
+        lastName: ctrl.lastName,
+        status:'active'
+    };
+
+    ctrl.orderSrv.getOrders(order);
 }
 

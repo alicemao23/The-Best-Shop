@@ -7,6 +7,7 @@ function ProductCtrl(productSrv,$state,$stateParams,api,products){
 	ctrl.$state = $state;
 	ctrl.$stateParams = $stateParams;
 	ctrl.products = [];
+
 	ctrl.categories = [
 		{label:'Shirts',value:'shirts'},
 		{label:'Pants',value:'pants'},
@@ -14,6 +15,8 @@ function ProductCtrl(productSrv,$state,$stateParams,api,products){
 		{label:'Dress',value:'dress'},
 		{label:'Outerwear',value:'outerwear'},
 	];
+
+	ctrl.product = {};
 	ctrl.product_update_btn = 'Update Product';
 	ctrl.product_delete_btn = 'Remove Product';
 	
@@ -39,19 +42,20 @@ ProductCtrl.prototype.addProduct = function (){
 		image: ctrl.image,
 		description: ctrl.description,
 		category: ctrl.category,
-		size: ctrl.size,
 		quantity: ctrl.quantity,
 		price: ctrl.price,
 		status:'active'
 	};
+
 	ctrl.productSrv.addProduct(product);
+
 }
 
 
 ProductCtrl.prototype.deleteProduct = function(productId){
 	var ctrl = this; 
+	console.log('hello');
 	ctrl.productSrv.deleteProduct(ctrl.product.id);
-	
 }
 
 ProductCtrl.prototype.updateProduct = function(){

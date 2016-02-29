@@ -29,7 +29,13 @@ p{
 td, th{
 	font-size: 12px;
 }
-
+.table th{
+	text-align:center;
+}
+.fa{
+	font-size:30px;
+	margin-left:20px;
+}
 /*
 Globals
 */
@@ -81,13 +87,12 @@ Nav
 	margin-top:2.5%;
 }
 /*main shop page*/
-.align-shopmain{
+.align-shopmain {
 	margin-right: 2.5%;
 	margin-left: 2.5%;
 	margin-bottom: 2.5%;
 	text-align: center;
 }
-
 .searchform, .inputform{
 	border:0;
 	margin-left:5px;
@@ -95,10 +100,11 @@ Nav
 	font-size:16px;
 }
 
-.inputform{
+.inputform, .borderbox{
 	width:50%;
 	border:1px solid;
 	border-radius: 2px;
+	border-color: #E8E8E8;
 }
 .searchform{
 	width:50px;
@@ -117,7 +123,7 @@ Nav
 .jumbotron{
 	background-image: url("../img/jumbotronz.jpg");
 	width: 100%;
-	height: 700px;
+	height: 600px;
 	background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -141,4 +147,34 @@ Nav
 
 .addToCart{
 	padding:2px;
+}
+.borderbox{
+	width:100%;
+	padding:75px;
+}
+footer{
+	width:100%;
+	background-color: #E8E8E8;
+	color: grey;
+	overflow: auto;
+	padding-top: 50px;
+	padding-bottom:50px;
+	margin-left:0;
+}
+footer > div {
+	width:50%;
+	float:left;
+}
+
+@media (min-width: 768px)
+.col-sm-3 {
+    width: 24.9%;
+
+}
+
+.productview{
+	margin-bottom:100px;
+}
+.row{
+	margin:0;
 }
